@@ -7,6 +7,7 @@ const config = {
 };
 
 const app = express();
+app.set('port',(process.env.PORT || 3000))
 app.post('/webhook', line.middleware(config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
@@ -25,4 +26,6 @@ function handleEvent(event) {
     });
 }
 
-app.listen(3000);
+app.listen(app.get('port'),function(){
+    console.log("line webhook run at port",app.get('port'))
+});
