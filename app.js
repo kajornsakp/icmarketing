@@ -48,6 +48,7 @@ function handleEvent(event) {
 
 function handlePostbackEvent(event) {
     var menu = event.postback.data;
+    console.log(menu)
     writeUserBill(event.source.userId,menu)
     var msg = {
         type : 'text',
@@ -77,9 +78,10 @@ function handleMessageEvent(event){
                         "text": "35 ฿",
                         "actions": [
                             {
-                                "type": "message",
+                                "type": "postback",
                                 "label": "Add",
-                                "text": "Espresso"
+                                "text": "Espresso",
+                                "data": "name=Espresso&price=35"
                             }
                         ]
                     },
@@ -89,9 +91,10 @@ function handleMessageEvent(event){
                         "text": "40 ฿",
                         "actions": [
                             {
-                                "type": "message",
+                                "type": "postback",
                                 "label": "Add",
-                                "text": "Cappuchino"
+                                "text": "Cappuchino",
+                                "data": "name=Cappuccino&price=40"
                             }
                         ]
                     }
