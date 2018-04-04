@@ -29,6 +29,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
             console.log(err);
             res.status(500).end();
         });
+    res.status(200);
 });
 
 const client = new line.Client(config);
@@ -65,19 +66,32 @@ function handleMessageEvent(event){
     if(eventText === 'menu'){
         msg = {
             "type": "template",
-            "altText": "Menu list",
+            "altText": "this is a carousel template",
             "template": {
                 "type": "carousel",
+                "actions": [],
                 "columns": [
                     {
-                        "thumbnailImageUrl": "https://www.thesun.co.uk/wp-content/uploads/2017/03/fifa-17-2.jpg?strip=all&w=742&quality=100",
+                        "thumbnailImageUrl": "https://au.cafe-royal.com/media/image/00/11/fb/159c24484e98cd.jpg",
                         "title": "Espresso",
-                        "text": "description",
+                        "text": "35 ฿",
                         "actions": [
                             {
-                                "type": "postback",
+                                "type": "message",
                                 "label": "Add",
-                                "data": "Espresso"
+                                "text": "Espresso"
+                            }
+                        ]
+                    },
+                    {
+                        "thumbnailImageUrl": "https://www.merriam-webster.com/assets/mw/images/article/art-wap-article-main/cappuccino-2029-e80b7c6d318c7862df2c4c8623a11f99@1x.jpg",
+                        "title": "Cappuccino",
+                        "text": "40 ฿",
+                        "actions": [
+                            {
+                                "type": "message",
+                                "label": "Add",
+                                "text": "Cappuchino"
                             }
                         ]
                     }
