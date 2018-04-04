@@ -34,7 +34,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 const client = new line.Client(config);
 
 function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text' || event.message.type !== 'postback') {
+    if (event.type !== 'message' || event.message.type !== 'text' || event.type !== 'postback') {
         return Promise.resolve(null);
     }
     if(event.type === 'postback'){
