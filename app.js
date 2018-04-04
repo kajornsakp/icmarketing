@@ -35,7 +35,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 const client = new line.Client(config);
 
 function handleEvent(event) {
-    console.log(event.type)
+    console.log(event)
     if(event.type === 'postback'){
         return handlePostbackEvent(event);
     }
@@ -81,7 +81,6 @@ function handleMessageEvent(event){
                             {
                                 "type": "postback",
                                 "label": "Add",
-                                "text": "Espresso",
                                 "data": "name=Espresso&price=35"
                             }
                         ]
@@ -94,7 +93,6 @@ function handleMessageEvent(event){
                             {
                                 "type": "postback",
                                 "label": "Add",
-                                "text": "Cappuchino",
                                 "data": "name=Cappuccino&price=40"
                             }
                         ]
