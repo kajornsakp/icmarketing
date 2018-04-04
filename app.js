@@ -34,11 +34,11 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 const client = new line.Client(config);
 
 function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text' || event.type !== 'postback') {
-        return Promise.resolve(null);
-    }
     if(event.type === 'postback'){
         return handlePostbackEvent(event);
+    }
+    else if (event.type !== 'message' || event.message.type !== 'text') {
+        return Promise.resolve(null);
     }
     else{
         return handleMessageEvent(event);
