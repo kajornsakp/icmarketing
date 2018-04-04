@@ -37,7 +37,7 @@ function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text' || event.message.type !== 'postback') {
         return Promise.resolve(null);
     }
-    if(event.type == 'postback'){
+    if(event.type === 'postback'){
         return handlePostbackEvent(event);
     }
     else{
@@ -52,6 +52,7 @@ function handlePostbackEvent(event) {
         type : 'text',
         text : `Added ${menu}`
     }
+    console.log('handle postback',msg);
     return client.replyMessage(event.replyToken,msg);
 }
 
@@ -121,6 +122,7 @@ function handleMessageEvent(event){
             text : 'Menu created'
         }
     }
+    console.log('handle msg',msg);
     return client.replyMessage(event.replyToken,msg);
 }
 
