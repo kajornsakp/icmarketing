@@ -34,13 +34,26 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 const client = new line.Client(config);
 
 function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text') {
+    if (event.type !== 'message' || event.message.type !== 'text' || event.message.type !== 'postback') {
         return Promise.resolve(null);
     }
-
-    return handleMessageEvent(event);
+    if(event.type == 'postback'){
+        return handlePostbackEvent(event);
+    }
+    else{
+        return handleMessageEvent(event);
+    }
 }
 
+function handlePostbackEvent(event) {
+    var menu = event.postback.data;
+    writeUserBill(event.source.userId,menu)
+    var msg = {
+        type : 'text',
+        text : `Added ${menu}`
+    }
+    return client.replyMessage(event.replyToken,msg);
+}
 
 function handleMessageEvent(event){
     var eventText = event.message.text.toLowerCase();
@@ -57,23 +70,13 @@ function handleMessageEvent(event){
                 "columns": [
                     {
                         "thumbnailImageUrl": "https://www.thesun.co.uk/wp-content/uploads/2017/03/fifa-17-2.jpg?strip=all&w=742&quality=100",
-                        "title": "HTC Vive",
+                        "title": "Espresso",
                         "text": "description",
                         "actions": [
                             {
                                 "type": "postback",
-                                "label": "Buy",
-                                "data": "action=buy&itemid=111"
-                            },
-                            {
-                                "type": "postback",
-                                "label": "Add to cart",
-                                "data": "action=add&itemid=111"
-                            },
-                            {
-                                "type": "uri",
-                                "label": "View detail",
-                                "uri": "http://example.com/page/111"
+                                "label": "Add",
+                                "data": "Espresso"
                             }
                         ]
                     },
@@ -106,7 +109,7 @@ function handleMessageEvent(event){
         msg = {
             type : 'location',
             title : 'Shop location',
-            address : 'King Mongkut\'s Institute of Technology Ladkrabang, International College, Chalongkrung Road, Ladkrabang, Bangkok 10520 Thailand',
+            address : 'International College, Chalongkrung Road, Ladkrabang, Bangkok 10520 Thailand',
             latitude : 13.729994,
             longitude : 100.775289
         }
