@@ -35,6 +35,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 const client = new line.Client(config);
 
 function handleEvent(event) {
+    console.log(event.type)
     if(event.type === 'postback'){
         return handlePostbackEvent(event);
     }
@@ -62,7 +63,7 @@ function handleMessageEvent(event){
     var eventText = event.message.text.toLowerCase();
     var msg = {
         type : 'text',
-        text : 'Welcome to IC Shop'
+        text : eventText
     }
     if(eventText === 'menu'){
         msg = {
