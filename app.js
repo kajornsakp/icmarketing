@@ -106,7 +106,7 @@ function handleMessageEvent(event){
         msg = {
             type : 'location',
             title : 'Shop location',
-            address : "King Mongkut's Institute of Technology Ladkrabang, International College, Chalongkrung Road, Ladkrabang, Bangkok 10520 Thailand",
+            address : 'King Mongkut\'s Institute of Technology Ladkrabang, International College, Chalongkrung Road, Ladkrabang, Bangkok 10520 Thailand',
             latitude : 13.729994,
             longitude : 100.775289
         }
@@ -123,7 +123,6 @@ function handleMessageEvent(event){
 
 function writeUserBill(userId,menu){
     firebase.database().ref('users/'+userId).set({
-        user : name,
         menu : menu
     });
 }
