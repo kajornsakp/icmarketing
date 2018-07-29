@@ -3,17 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.js"
+    "start": "sudo node ./app.js"
   },
   "dependencies": {
-    "@line/bot-sdk": "^6.0.1",
+    "@line/bot-sdk": "^6.0.2",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "firebase": "^4.12.1",
+    "firebase-admin": "^5.12.0",
     "jade": "~1.11.0",
+    "line-pay": "^1.0.11",
     "morgan": "~1.9.0",
+    "npm": "^6.1.0",
     "serve-favicon": "~2.4.5"
   }
 }
